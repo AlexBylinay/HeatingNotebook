@@ -1,9 +1,8 @@
 package com.example.heatingnotebook.note_screens
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -24,29 +23,47 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.heatingnotebook.ui.theme.OrangeLight
+import com.example.heatingnotebook.utils.Stayls
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewNoteScreen() {
     var text by remember { mutableStateOf("") }
 
-    val heightTextFields by remember {
-        mutableStateOf(80.dp)
-    }
 
     val modifierTextField = Modifier
         .fillMaxWidth()
         .padding(8.dp)
 
 
+
+    val modifierText = Modifier.padding(
+        top = 20.dp,
+        start = 10.dp)
+
+
+    val colors = TextFieldDefaults.textFieldColors(
+        containerColor = Color.Transparent,
+        cursorColor = Color.Black
+    )
+
+    val textStyle = TextStyle(
+    color = Color.DarkGray,
+    fontSize = 20.sp)
+
+    val keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+
+    val staylEditText = Stayls(textStyle, keyboardOptions)
+
+
+
     Card(
         onClick = { },
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(top = 3.dp),
         colors = CardDefaults.cardColors(
             containerColor = OrangeLight,
@@ -66,7 +83,7 @@ fun NewNoteScreen() {
             Text(
                 text = "Ввидите данные:",
                 modifier = Modifier.padding(
-                    top = 10.dp,
+                    top = 20.dp,
                     start = 10.dp
                 ),
                 style = TextStyle(fontSize = 24.sp),
@@ -84,6 +101,7 @@ fun NewNoteScreen() {
                 onValueChange = { it ->
                     text = it
                 },
+
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.Transparent,
                     cursorColor = Color.Black
@@ -92,7 +110,6 @@ fun NewNoteScreen() {
                     color = Color.DarkGray,
                     fontSize = 20.sp
                 ),
-
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
 
             )
@@ -102,7 +119,7 @@ fun NewNoteScreen() {
                 value = text,
                 label = { Text(text = "Number Input Type")
                 },
-                placeholder = { Text(text = "Enter your e-mail") },
+                placeholder = { Text(text = "Последние паказания: ") },
                 onValueChange = {
                     text = it
                 },
@@ -123,7 +140,7 @@ fun NewNoteScreen() {
                 label = { Text(text = "Email address",
                     style = TextStyle(fontSize = 20.sp),
                     color = Color.Black) },
-                placeholder = { Text(text = "Enter your e-mail") },
+                placeholder = { Text(text = "Последние паказания:") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
         }
