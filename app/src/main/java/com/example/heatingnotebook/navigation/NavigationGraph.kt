@@ -15,7 +15,7 @@ import com.example.heatingnotebook.note_screens.NoteScreen
 import com.example.heatingnotebook.utils.Routes
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun NavigationGraph(navController: NavHostController, onNavigate:(String) -> Unit) {
 
     val journals = mutableListOf<Journal>(
          Journal (5,"Батоничкская","89/15"),
@@ -33,15 +33,15 @@ fun NavigationGraph(navController: NavHostController) {
     )
 
 
-    val note = Note (4,  "12.09.2024","11:34",99879.110,
-        0.78, 1.7,56.2, "34:78",
-        99879.110, 0.78, 1.7,56.2,
-        "34:78", 10.0, 10.0," 2:13",30)
+    val note = Note (1,  "12.09.2024","11:34","99879.110",
+        "0.78", "1.7","56.2", "34:78",
+        "99879.110", "0.78", "1.7","46.2",
+        "34:78", "10.0", "5.0,"," 2:13",4)
 
-    val note2 = Note (4,  "18.19.2024","15:34",99879.110,
-        0.78, 1.7,56.2, "34:78",
-        99879.110, 0.78, 1.7,56.2,
-        "34:78", 10.0, 10.0," 2:13",30)
+    val note2 = Note (4,  "18.19.2024","15:34","99879.110",
+        "0.78", "1.7","56.2", "34:78",
+        "99879.110", "0.78", "1.7","56.2",
+        "34:78", "10.0", "5.0"," 2:13",3)
 
     val notes = mutableListOf<Note>(note,note2)
 
@@ -50,13 +50,15 @@ fun NavigationGraph(navController: NavHostController) {
         startDestination = Routes.JOURNALS_LIST
     ) {
         composable(Routes.JOURNALS_LIST) {
-            ListJournalsScreen(journals)
+            ListJournalsScreen(){ route ->
+                onNavigate(route)
+            }
         }
         composable(Routes.NEW_JOURNAL){
-            NewNoteScreen()
+            NewNoteScreen { -> }
             }
         composable(Routes.ABOUT){
-            NoteListScreen(list = notes )
+            NoteListScreen()
             }
         composable(Routes.SETTINGS){
             NoteScreen(note)

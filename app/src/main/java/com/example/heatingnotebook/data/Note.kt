@@ -10,20 +10,20 @@ data class Note(
     val data: String,
     val time: String,
 
-    val amountHeat1: Double,
-    val amount1: Double,
-    val instantFlow1: Double,
-    val temperature1: Double,
+    val amountHeat1: String,
+    val amount1: String,
+    val instantFlow1: String,
+    val temperature1: String,
     val timeWork1: String,
 
-    val amountHeat2: Double,
-    val amount2: Double,
-    val instantFlow2: Double,
-    val temperature2: Double,
+    val amountHeat2: String,
+    val amount2: String,
+    val instantFlow2: String,
+    val temperature2: String,
     val timeWork2: String,
 
-    val tempHot: Double,
-    val tempHotIm: Double,
+    val tempHot: String,
+    val tempHotIm: String,
 
     val timeWorkWrong: String,
 

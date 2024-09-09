@@ -30,11 +30,16 @@ import com.example.heatingnotebook.data.Journal
 import com.example.heatingnotebook.ui.theme.HardRed
 import com.example.heatingnotebook.ui.theme.OrangeLight
 import  com.example.heatingnotebook.R
+import com.example.heatingnotebook.utils.Routes
 
 @Composable
-fun JournalCard(journal: Journal) {
+fun JournalCard(
+    journal: Journal,
+    onEvent: (ListJournalEvent) -> Unit
+) {
     Card(
-        onClick = { },
+        onClick = { onEvent(ListJournalEvent.OnItemClick(
+            Routes.LIST_NOTES + "/${journal.id}")) },
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 3.dp),
@@ -69,7 +74,7 @@ fun JournalCard(journal: Journal) {
                         top = 10.dp,
                         start = 10.dp
                     ),
-                    style = TextStyle(fontSize = 28.sp),
+                    style = TextStyle(fontSize = 23.sp),
                     color = Color.Black
                 )
                 Text(
@@ -79,7 +84,7 @@ fun JournalCard(journal: Journal) {
                         start = 10.dp,
                         bottom = 7.dp
                     ),
-                    style = TextStyle(fontSize = 23.sp),
+                    style = TextStyle(fontSize = 21.sp),
                     color = HardRed, fontWeight = FontWeight.Bold
                 )
 
@@ -94,6 +99,7 @@ fun JournalCard(journal: Journal) {
 
                 IconButton(
                     onClick = {
+                        onEvent(ListJournalEvent.OnShowEditDialog(journal))
                     },
                 )
                 {
@@ -106,8 +112,10 @@ fun JournalCard(journal: Journal) {
                         tint = HardRed
                     )
                 }
+
                 IconButton(
                     onClick = {
+                        onEvent(ListJournalEvent.OnShowDeleteDialog(journal))
                     },
                 )
                 {
