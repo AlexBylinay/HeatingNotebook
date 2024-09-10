@@ -76,6 +76,8 @@ var listId: Int = -1
         private set
     override var showEditTableText = mutableStateOf(false)
         private set
+    override var existedId = mutableStateOf(false)
+        private set
 
 
     fun onEvent(event: NoteEvent) {

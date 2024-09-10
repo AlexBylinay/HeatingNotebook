@@ -35,6 +35,8 @@ class MainScreenViewModel @Inject constructor( private val repository: JournalRe
         private  set
     override var showEditTableText= mutableStateOf(true)
         private  set
+    override var existedId = mutableStateOf(false)
+        private set
 
     fun onEvent(event: MainScreenEvent) {
         when( event ){
