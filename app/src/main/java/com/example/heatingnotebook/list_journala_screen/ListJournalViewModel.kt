@@ -25,6 +25,7 @@ class ListJournalViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
 
+
     override var textTitle = mutableStateOf("")
         private set
     override var numberTitle = mutableStateOf("")
@@ -38,6 +39,8 @@ class ListJournalViewModel @Inject constructor(
     override var openDialog = mutableStateOf(false)
         private set
     override var showEditTableText = mutableStateOf(false)
+        private set
+    override var existedId = mutableStateOf(false)
         private set
     //  override var showEditTableNameText= mutableStateOf(false)
     //    private  set
