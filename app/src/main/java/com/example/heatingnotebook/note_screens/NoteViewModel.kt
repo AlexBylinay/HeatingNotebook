@@ -46,6 +46,7 @@ var listId: Int = -1
        // itemsList = repository.getAllItemsByID(listId)
         //viewModelScope.launch { shoppingListItem = repository.getListItemsByID(listId) }
 
+
     var amountHeat1= mutableStateOf("")
     var amount1= mutableStateOf("")
     var instantFlow1= mutableStateOf("")
@@ -83,6 +84,9 @@ var listId: Int = -1
     fun onEvent(event: NoteEvent) {
         when (event) {
             is NoteEvent.OnNoteSave -> {
+
+
+
             }
 
             is NoteEvent.OnShowDEventDialog -> {

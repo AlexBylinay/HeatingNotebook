@@ -100,7 +100,12 @@ fun MainDialog(dialogController: DialogController) {
                 }) {
 
                     if (dialogController.showEditTableText.value)
-                    Text(text = "Создать" )
+                        if(dialogController.existedId.value)
+
+                            Text(text = "Редактировать")
+                            else
+                            Text(text = "Создать")
+
 else
                         Text(text = "Удалить" )
                 }

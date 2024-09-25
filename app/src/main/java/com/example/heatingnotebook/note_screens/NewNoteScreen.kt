@@ -39,6 +39,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.heatingnotebook.R
 import com.example.heatingnotebook.data.Note
 import com.example.heatingnotebook.main_screen.BottomNav
@@ -49,7 +50,7 @@ import com.example.heatingnotebook.ui.theme.OrangeLight
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewNoteScreen(onPopBackStack: () -> Unit) {
+fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: () -> Unit) {
 
 
     val note = Note(
@@ -126,9 +127,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.amountHeat1.value,
                 onValueChange = {
-                    text = it
+                    viewModel.amountHeat1.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -143,9 +144,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.amount1.value,
                 onValueChange = {
-                    text = it
+                    viewModel.amount1.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -160,9 +161,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.instantFlow1.value,
                 onValueChange = {
-                    text = it
+                    viewModel.instantFlow1.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -176,9 +177,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
             )
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.temperature1.value,
                 onValueChange = {
-                    text = it
+                    viewModel.temperature1.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -193,9 +194,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.timeWork1.value,
                 onValueChange = {
-                    text = it
+                    viewModel.timeWork1.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -217,9 +218,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.amountHeat2.value,
                 onValueChange = {
-                    text = it
+                    viewModel.amountHeat2.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -234,9 +235,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.amount2.value,
                 onValueChange = {
-                    text = it
+                    viewModel.amount2.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -251,9 +252,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.instantFlow2.value,
                 onValueChange = {
-                    text = it
+                    viewModel.instantFlow2.value =it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -267,9 +268,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
             )
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.temperature2.value,
                 onValueChange = {
-                    text = it
+                    viewModel.temperature2.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -284,9 +285,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.timeWork2.value,
                 onValueChange = {
-                    text = it
+                    viewModel.timeWork2.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -308,9 +309,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.tempHot.value,
                 onValueChange = {
-                    text = it
+                    viewModel.tempHot.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -325,9 +326,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.tempHotIm.value,
                 onValueChange = {
-                    text = it
+                    viewModel.tempHotIm.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -347,9 +348,9 @@ fun NewNoteScreen(onPopBackStack: () -> Unit) {
             )
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = text,
+                value = viewModel.timeWorkWrong.value,
                 onValueChange = {
-                    text = it
+                    viewModel.timeWorkWrong.value = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {

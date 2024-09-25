@@ -78,10 +78,12 @@ class ListJournalViewModel @Inject constructor(
             is ListJournalEvent.OnShowEditDialog -> {
                 journal = event.journal
                 openDialog.value = true
+
                 editTableText.value = journal?.name ?: ""
                 editNumber.value = journal?.number ?: ""
                 dialogTitle.value = "Редактирование Журнала"
                 showEditTableText.value = true
+                existedId.value = true
                 //   showEditTableNameText.value = true
 
             }
