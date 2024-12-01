@@ -16,7 +16,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
+ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -50,7 +50,8 @@ import com.example.heatingnotebook.ui.theme.OrangeLight
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: () -> Unit) {
+fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: () -> Unit
+) {
 
 
     val note = Note(
@@ -124,12 +125,11 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
             )
 
 
-
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.amountHeat1.value,
+                value = viewModel.note.value.amountHeat1,
                 onValueChange = {
-                    viewModel.amountHeat1.value = it
+                    viewModel.note.value.amountHeat1 = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -144,9 +144,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.amount1.value,
+                value = viewModel.note.value.amount1,
                 onValueChange = {
-                    viewModel.amount1.value = it
+                    viewModel.note.value.amount1 = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -161,9 +161,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.instantFlow1.value,
+                value =  viewModel.note.value.instantFlow1,
                 onValueChange = {
-                    viewModel.instantFlow1.value = it
+                    viewModel.note.value.instantFlow1 = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -177,9 +177,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
             )
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.temperature1.value,
+                value = viewModel.note.value.temperature1,
                 onValueChange = {
-                    viewModel.temperature1.value = it
+                    viewModel.note.value.temperature1 = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -194,9 +194,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.timeWork1.value,
+                value = viewModel.note.value.timeWork1,
                 onValueChange = {
-                    viewModel.timeWork1.value = it
+                    viewModel.note.value.timeWork1= it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -218,9 +218,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.amountHeat2.value,
+                value = viewModel.note.value.amountHeat2,
                 onValueChange = {
-                    viewModel.amountHeat2.value = it
+                    viewModel.note.value.amountHeat2 = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -235,9 +235,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.amount2.value,
+                value = viewModel.note.value.amount2,
                 onValueChange = {
-                    viewModel.amount2.value = it
+                    viewModel.note.value.amount2= it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -252,9 +252,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.instantFlow2.value,
+                value = viewModel.note.value.instantFlow2,
                 onValueChange = {
-                    viewModel.instantFlow2.value =it
+                    viewModel.note.value.instantFlow2 =it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -268,9 +268,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
             )
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.temperature2.value,
+                value = viewModel.note.value.temperature2,
                 onValueChange = {
-                    viewModel.temperature2.value = it
+                    viewModel.note.value.temperature2 = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -285,9 +285,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.timeWork2.value,
+                value = viewModel.note.value.timeWork2,
                 onValueChange = {
-                    viewModel.timeWork2.value = it
+                    viewModel.note.value.timeWork2 = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -309,9 +309,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.tempHot.value,
+                value = viewModel.note.value.tempHot,
                 onValueChange = {
-                    viewModel.tempHot.value = it
+                    viewModel.note.value.tempHot= it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -326,9 +326,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.tempHotIm.value,
+                value = viewModel.note.value.tempHotIm,
                 onValueChange = {
-                    viewModel.tempHotIm.value = it
+                    viewModel.note.value.tempHotIm = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -348,9 +348,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
             )
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.timeWorkWrong.value,
+                value = viewModel.note.value.timeWorkWrong,
                 onValueChange = {
-                    viewModel.timeWorkWrong.value = it
+                    viewModel.note.value.timeWorkWrong = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -362,10 +362,6 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
                 placeholder = { Text(text = placeholderTxt + note.timeWorkWrong) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
-
-
-
-
 
         }
 
@@ -384,9 +380,7 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: ()
 
 
                 Button(
-
-
-                    onClick = { /* ... */ },
+                    onClick = { viewModel.onEvent(NoteEvent.OnNoteSave)},
                     colors = ButtonDefaults.buttonColors(Orange),
                 ) {
                     Icon(

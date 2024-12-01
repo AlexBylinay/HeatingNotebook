@@ -19,7 +19,7 @@ fun MainNavigationGraph () {
         composable(Routes.LIST_NOTES+"/{journalId}") {
             NoteListScreen()
         }
-        composable(Routes.NEW_NOTE ) {
+        composable(Routes.NEW_NOTE) {
             NewNoteScreen()
             {
                 navController.popBackStack()

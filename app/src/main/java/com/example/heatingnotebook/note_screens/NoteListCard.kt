@@ -32,7 +32,9 @@ import com.example.heatingnotebook.ui.theme.OrangeLight
 @Composable
 fun NoteListCard(note: Note) {
     Card(
-        onClick = { },
+        onClick = {
+            
+        },
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 3.dp),

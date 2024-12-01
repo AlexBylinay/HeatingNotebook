@@ -10,23 +10,23 @@ data class Note(
     val data: String,
     val time: String,
 
-    val amountHeat1: String,
-    val amount1: String,
-    val instantFlow1: String,
-    val temperature1: String,
-    val timeWork1: String,
+    var amountHeat1: String,
+    var amount1: String,
+    var instantFlow1: String,
+    var temperature1: String,
+    var timeWork1: String,
 
-    val amountHeat2: String,
-    val amount2: String,
-    val instantFlow2: String,
-    val temperature2: String,
-    val timeWork2: String,
+    var amountHeat2: String,
+    var amount2: String,
+    var instantFlow2: String,
+    var temperature2: String,
+    var timeWork2: String,
 
-    val tempHot: String,
-    val tempHotIm: String,
+    var tempHot: String,
+    var tempHotIm: String,
 
-    val timeWorkWrong: String,
+    var timeWorkWrong: String,
 
-    val journalId: Int
+    var journalId: Int
 
     )

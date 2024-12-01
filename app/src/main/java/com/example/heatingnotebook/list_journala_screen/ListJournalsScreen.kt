@@ -53,6 +53,9 @@ fun ListJournalsScreen(viewModel: ListJournalViewModel = hiltViewModel(),
             }
         }
     }
+
+
+
     MainDialog(viewModel)
 }
 

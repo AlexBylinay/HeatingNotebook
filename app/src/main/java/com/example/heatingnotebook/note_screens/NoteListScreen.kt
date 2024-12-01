@@ -1,28 +1,43 @@
 package com.example.heatingnotebook.note_screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.heatingnotebook.data.Note
+import com.example.heatingnotebook.dialog.MainDialog
 import com.example.heatingnotebook.list_journala_screen.JournalCard
+import com.example.heatingnotebook.main_screen.BottomNav
+import com.example.heatingnotebook.main_screen.MainScreenEvent
+import com.example.heatingnotebook.navigation.NavigationGraph
+import com.example.heatingnotebook.ui.theme.Orange
+import com.example.heatingnotebook.ui.theme.RedBlack
 import dagger.hilt.android.lifecycle.HiltViewModel
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun NoteListScreen(
-   // viewModel: NoteViewModel = hiltViewModel()
+    viewModel: NoteViewModel = hiltViewModel()
 ) {
 
 
@@ -41,7 +56,13 @@ fun NoteListScreen(
 
     val notes = mutableListOf<Note>(note,note2)
 
+    val modifierText = Modifier.padding(
+        start = 10.dp, end = 10.dp)
 
+    val textStyle =
+        TextStyle(fontSize = 22.sp,color = RedBlack)
+
+    val lable = "Новая запись"
 
     LazyColumn(
         modifier = Modifier
@@ -52,6 +73,38 @@ fun NoteListScreen(
         items(notes) { item ->
             NoteListCard(item)
         }
+    }
+    Scaffold(
+
+    floatingActionButton = {
+        FloatingActionButton(
+            onClick = {
+               // viewModel.onEvent(MainScreenEvent.OnShowEditDialog)
+            }, containerColor = Orange
+        ) {
+
+            androidx.compose.material3.Text(
+                text = lable,
+                modifierText,
+                style = textStyle
+            )
+
+
+            //  Icon(
+            //       painter = painterResource(
+            //           id = R.drawable.add_icon
+            //       ),
+            //         contentDescription = "Add", tint = Color.White
+            //     )
+
+        }
+    },
+    floatingActionButtonPosition = FabPosition.Center
+
+    )
+    {
+
+
     }
 
 }
