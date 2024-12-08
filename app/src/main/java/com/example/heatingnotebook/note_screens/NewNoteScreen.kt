@@ -50,7 +50,8 @@ import com.example.heatingnotebook.ui.theme.OrangeLight
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(), onPopBackStack: () -> Unit
+fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(),
+                  onPopBackStack: () -> Unit
 ) {
 
 
