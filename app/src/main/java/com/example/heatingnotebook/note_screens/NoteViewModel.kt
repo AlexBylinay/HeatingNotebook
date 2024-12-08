@@ -114,7 +114,11 @@ var listId: Int = -1
 
 
             is NoteEvent.OnShowDeleteDialog -> TODO()
+
+            is NoteEvent.OnItemClick -> {
+            }
         }
+
 
     }
 
