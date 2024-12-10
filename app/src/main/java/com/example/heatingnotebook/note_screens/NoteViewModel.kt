@@ -25,41 +25,43 @@ import javax.inject.Inject
 @HiltViewModel
 class NoteViewModel @Inject constructor(
     private val repository: NoteRepository,
-savedStateHandle: SavedStateHandle
-): ViewModel(), DialogController
-{
-private val _uiEvent = Channel<UiEvent>()
+    savedStateHandle: SavedStateHandle
+) : ViewModel(), DialogController {
+    private val _uiEvent = Channel<UiEvent>()
 
-val uiEvent = _uiEvent.receiveAsFlow()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
-var noteList: Flow<List<Note>>? = null
-//var note: Note? = null
-var shoppingListItem: Journal? = null
-var listId: Int = -1
+    var noteList: Flow<List<Note>>? = null
+
+    //var note: Note? = null
+    var shoppingListItem: Journal? = null
+    var listId: Int = -1
     var journalId: Int = -1
 
     init {
         journalId = savedStateHandle.get<String>("journalId")?.toInt()!!
         Log.d("MyLog", "List id View model $journalId")
 
-    noteList = repository.getAllNoteByJournalId(journalId!!)
+        noteList = repository.getAllNoteByJournalId(journalId!!)
     }
 
-       // itemsList = repository.getAllItemsByID(listId)
-        //viewModelScope.launch { shoppingListItem = repository.getListItemsByID(listId) }
+    // itemsList = repository.getAllItemsByID(listId)
+    //viewModelScope.launch { shoppingListItem = repository.getListItemsByID(listId) }
 
-   var note = mutableStateOf(Note(
-       null, "", "", "",
-       "", " ", "", "",
-       "", "", "",
-       "",
-       "", "", "", " ", 30)
-   )
-    var amountHeat1= mutableStateOf("")
-    var amount1= mutableStateOf("")
-    var instantFlow1= mutableStateOf("")
-    var temperature1= mutableStateOf("")
-    var timeWork1= mutableStateOf("")
+    var note = mutableStateOf(
+        Note(
+            null, "", "", "",
+            "", " ", "", "",
+            "", "", "",
+            "",
+            "", "", "", " ", 30
+        )
+    )
+    var amountHeat1 = mutableStateOf("")
+    var amount1 = mutableStateOf("")
+    var instantFlow1 = mutableStateOf("")
+    var temperature1 = mutableStateOf("")
+    var timeWork1 = mutableStateOf("")
     var amountHeat2 = mutableStateOf("")
 
     var amount2 = mutableStateOf("")
@@ -93,13 +95,15 @@ var listId: Int = -1
         when (event) {
             is NoteEvent.OnNoteSave -> {
                 viewModelScope.launch {
-                    if (listId ==-1) return@launch
-                    repository.insertNote(Note(
-                        4, "12.09.2024", "11:34", "99879.110",
-                        "0.78", "1.7", "56.2", "34:78",
-                        "99879.110", "0.78", "1.7",
-                        "46.2",
-                        "34:78", "10.0", "5.0", " 2:13", journalId)
+                    if (listId == -1) return@launch
+                    repository.insertNote(
+                        Note(
+                            4, "12.09.2024", "11:34", "99879.110",
+                            "0.78", "1.7", "56.2", "34:78",
+                            "99879.110", "0.78", "1.7",
+                            "46.2",
+                            "34:78", "10.0", "5.0", " 2:13", journalId
+                        )
                     )
                 }
             }
@@ -110,15 +114,18 @@ var listId: Int = -1
 
             is NoteEvent.OnTextChange -> {
 
+
             }
 
+            is NoteEvent.OnItemClick -> {
+                sendUiEvent(UiEvent.Navigate(event.route))
+            }
 
             is NoteEvent.OnShowDeleteDialog -> TODO()
         }
 
+
     }
-
-
 
 
     override fun onDialogEvent(event: DialogEvent) {
@@ -138,16 +145,22 @@ var listId: Int = -1
 
             is DialogEvent.OnConfirm -> {
                 if (showEditTableText.value) {
-                  //  onEvent(ListJournalEvent.OnItemSave)
+                    //  onEvent(ListJournalEvent.OnItemSave)
                 } else {
                     viewModelScope.launch {
-                      //  journal?.let { repository.deleteJournal(it) }
+                        //  journal?.let { repository.deleteJournal(it) }
                     }
                     openDialog.value = false
                 }
                 openDialog.value = false
             }
 
+        }
+    }
+
+    private fun sendUiEvent(event: UiEvent) {
+        viewModelScope.launch {
+            _uiEvent.send(event)
         }
     }
 }

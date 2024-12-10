@@ -50,6 +50,7 @@ import com.example.heatingnotebook.navigation.NavigationGraph
 import com.example.heatingnotebook.ui.theme.Orange
 import com.example.heatingnotebook.ui.theme.OrangeLight
 import com.example.heatingnotebook.ui.theme.RedBlack
+import com.example.heatingnotebook.utils.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -58,6 +59,7 @@ fun NoteListScreen(
     viewModel: NoteViewModel = hiltViewModel()
 ) {
 
+val journalId = viewModel.listId
 
     val note = Note(
         4, "12.09.2024", "11:34", "99879.110",
@@ -113,7 +115,8 @@ fun NoteListScreen(
         ) {
             Button(
 
-                onClick = { //viewModel.onEvent(NoteEvent.OnNoteSave)
+                onClick = { viewModel.onEvent(NoteEvent.OnItemClick(
+                    Routes.NEW_NOTE))
                 },
                 colors = ButtonDefaults.buttonColors(Orange),
             ) {
