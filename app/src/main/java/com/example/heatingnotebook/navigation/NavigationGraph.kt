@@ -58,7 +58,9 @@ fun NavigationGraph(navController: NavHostController, onNavigate:(String) -> Uni
             NewNoteScreen { -> }
             }
         composable(Routes.ABOUT){
-            NoteListScreen()
+            NoteListScreen(){ route ->
+                onNavigate(route)
+            }
             }
         composable(Routes.SETTINGS){
             NoteScreen(note)

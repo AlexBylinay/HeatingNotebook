@@ -30,6 +30,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,12 +52,14 @@ import com.example.heatingnotebook.ui.theme.Orange
 import com.example.heatingnotebook.ui.theme.OrangeLight
 import com.example.heatingnotebook.ui.theme.RedBlack
 import com.example.heatingnotebook.utils.Routes
+import com.example.heatingnotebook.utils.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun NoteListScreen(
-    viewModel: NoteViewModel = hiltViewModel()
+    viewModel: NoteViewModel = hiltViewModel(),
+    onNavigate: (String) -> Unit
 ) {
 
 val journalId = viewModel.listId
@@ -90,6 +93,19 @@ val journalId = viewModel.listId
 
     // val lable = "Новая запись"
 
+    LaunchedEffect(key1 = true )
+    {
+        viewModel.uiEvent.collect{uiEvent ->
+            when (uiEvent){
+                is UiEvent.Navigate ->{
+                    onNavigate(uiEvent.route)
+                }
+                else ->{}
+            }
+
+        }
+    }
+
 
     LazyColumn(
         modifier = Modifier
@@ -98,7 +114,9 @@ val journalId = viewModel.listId
     )
     {
         items(notes) { item ->
-            NoteListCard(item)
+            NoteListCard(item) { event ->
+                viewModel.onEvent(event)
+            }
         }
     }
     Column(

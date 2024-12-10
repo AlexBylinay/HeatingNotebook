@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import com.example.heatingnotebook.main_screen.MainScreen
 import com.example.heatingnotebook.navigation.MainNavigationGraph
 import com.example.heatingnotebook.ui.theme.HeatingNotebookTheme
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
             HeatingNotebookTheme {
                 MainNavigationGraph()
             }

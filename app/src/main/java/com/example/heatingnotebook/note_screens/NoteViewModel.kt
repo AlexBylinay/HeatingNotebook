@@ -39,7 +39,7 @@ class NoteViewModel @Inject constructor(
     var journalId: Int = -1
 
     init {
-        journalId = savedStateHandle.get<String>("journalId")?.toInt()!!
+        //journalId = savedStateHandle.get<String>("journalId")?.toInt()!!
         Log.d("MyLog", "List id View model $journalId")
 
         noteList = repository.getAllNoteByJournalId(journalId!!)
@@ -123,8 +123,6 @@ class NoteViewModel @Inject constructor(
 
             is NoteEvent.OnShowDeleteDialog -> TODO()
 
-            is NoteEvent.OnItemClick -> {
-            }
         }
 
 

@@ -26,14 +26,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.heatingnotebook.R
 import com.example.heatingnotebook.data.Note
+import com.example.heatingnotebook.list_journala_screen.ListJournalEvent
 import com.example.heatingnotebook.ui.theme.HardRed
 import com.example.heatingnotebook.ui.theme.OrangeLight
+import com.example.heatingnotebook.utils.Routes
 
 @Composable
-fun NoteListCard(note: Note) {
+fun NoteListCard(note: Note,
+                 onEvent: (NoteEvent) -> Unit) {
     Card(
         onClick = {
-            
+            onEvent(NoteEvent.OnItemClick(
+                Routes.SETTINGS ))
         },
         modifier = Modifier
             .fillMaxWidth()

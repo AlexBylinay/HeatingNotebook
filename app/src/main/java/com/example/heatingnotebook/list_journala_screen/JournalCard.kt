@@ -39,7 +39,9 @@ fun JournalCard(
 ) {
     Card(
         onClick = { onEvent(ListJournalEvent.OnItemClick(
-            Routes.LIST_NOTES + "/${journal.id}")) },
+           Routes.LIST_NOTES + "/${journal.id}"))
+            //Routes.SETTINGS))
+            },
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 3.dp),
