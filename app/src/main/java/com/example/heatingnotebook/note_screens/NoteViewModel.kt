@@ -122,6 +122,9 @@ class NoteViewModel @Inject constructor(
             }
 
             is NoteEvent.OnShowDeleteDialog -> TODO()
+
+            is NoteEvent.OnItemClick -> {
+            }
         }
 
 

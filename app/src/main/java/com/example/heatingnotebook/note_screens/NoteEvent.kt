@@ -1,6 +1,7 @@
 package com.example.heatingnotebook.note_screens
 
 import com.example.heatingnotebook.data.Note
+import com.example.heatingnotebook.list_journala_screen.ListJournalEvent
 
 sealed class NoteEvent {
     data class OnShowDeleteDialog(val note: Note): NoteEvent()
