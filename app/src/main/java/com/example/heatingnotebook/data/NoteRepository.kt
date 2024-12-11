@@ -8,6 +8,7 @@ interface NoteRepository {
     suspend fun deleteNote(note: Note)
     fun getAllNoteByJournalId (journalId: Int): Flow<List<Note>>
     fun getNoteById (id: Int): Note
+    fun getAllNote (): Flow<List<Note>>
     suspend fun geJournalById (journalId: Int): Journal
     suspend fun insertItem(item:Journal)
 }

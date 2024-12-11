@@ -32,12 +32,12 @@ import com.example.heatingnotebook.ui.theme.OrangeLight
 import com.example.heatingnotebook.utils.Routes
 
 @Composable
-fun NoteListCard(note: Note,
+fun NoteListCard(note: Note, journalID: String,
                  onEvent: (NoteEvent) -> Unit) {
     Card(
         onClick = {
             onEvent(NoteEvent.OnItemClick(
-                Routes.SETTINGS ))
+                Routes.NOTE+ "/${journalID}" ))
         },
         modifier = Modifier
             .fillMaxWidth()

@@ -12,17 +12,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.heatingnotebook.data.Note
 import com.example.heatingnotebook.ui.theme.OrangeLight
 
 @Composable
-fun NoteScreen(note: Note) {
+fun NoteScreen(viewModel: NoteViewModel = hiltViewModel()) {
 
     val modifierText =Modifier.padding(top = 8.dp, start = 5.dp)
     val modifierTextCap =Modifier.padding(end = 10.dp, start = 10.dp)
     val styleText = TextStyle(fontSize = 20.sp)
     val styleTextCap = TextStyle(fontSize = 23.sp)
-
+val note = viewModel.note.value
 
 
     Card(
@@ -145,6 +146,12 @@ fun NoteScreen(note: Note) {
                     )
 
             }
+            Text(
+                text = "id: ${note.id} ",
+                modifierText,
+                style = styleText
+
+            )
 
             Text(
                 text = "Температура холодной воды(t),°С: ${note.tempHot}",

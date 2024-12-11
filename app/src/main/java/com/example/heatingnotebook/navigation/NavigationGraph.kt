@@ -63,7 +63,7 @@ fun NavigationGraph(navController: NavHostController, onNavigate:(String) -> Uni
             }
             }
         composable(Routes.SETTINGS){
-            NoteScreen(note)
+            NoteScreen()
             }
     }
 

@@ -28,7 +28,7 @@ fun MainNavigationGraph () {
                 navController.navigate(route)
             }
         }
-        composable(Routes.NEW_NOTE ) {
+        composable(Routes.NEW_NOTE+"/{journalId}" ) {
             NewNoteScreen()
             {
                // navController.popBackStack()
@@ -37,8 +37,8 @@ fun MainNavigationGraph () {
         composable(Routes.MAIN_SCREEN) {
             MainScreen(navController)
         }
-        composable(Routes.SETTINGS) {
-            NoteScreen(note)
+        composable(Routes.NOTE+"/{journalId}") {
+            NoteScreen()
         }
 
     }

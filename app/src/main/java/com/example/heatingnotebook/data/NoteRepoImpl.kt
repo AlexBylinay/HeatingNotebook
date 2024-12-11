@@ -16,6 +16,11 @@ class NoteRepoImpl(private val dao: NoteDao) : NoteRepository {
     override fun getNoteById(id: Int): Note {
         return dao.getNoteById(id)
     }
+
+    override fun getAllNote(): Flow<List<Note>> {
+        return dao.getAllNote()
+    }
+
     override suspend fun geJournalById(journalId: Int): Journal {
         return dao.getJournalById(journalId)
     }

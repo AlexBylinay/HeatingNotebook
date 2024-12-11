@@ -31,18 +31,20 @@ class NoteViewModel @Inject constructor(
 
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    var noteList: Flow<List<Note>>? = null
+  //  var noteList: Flow<List<Note>>? = null
 
+    val notes = repository.getAllNote()
     //var note: Note? = null
     var shoppingListItem: Journal? = null
-    var listId: Int = -1
-    var journalId: Int = -1
+    var listId: Int = 1
+    var journalId: Int = 1
 
     init {
-        //journalId = savedStateHandle.get<String>("journalId")?.toInt()!!
+
+        journalId = savedStateHandle.get<String>("journalId")?.toInt()!!
         Log.d("MyLog", "List id View model $journalId")
 
-        noteList = repository.getAllNoteByJournalId(journalId!!)
+      //  noteList = repository.getAllNoteByJournalId(journalId)
     }
 
     // itemsList = repository.getAllItemsByID(listId)
@@ -50,7 +52,7 @@ class NoteViewModel @Inject constructor(
 
     var note = mutableStateOf(
         Note(
-            null, "", "", "",
+            2, "", "", "",
             "", " ", "", "",
             "", "", "",
             "",

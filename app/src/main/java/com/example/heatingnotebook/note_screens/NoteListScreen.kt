@@ -31,6 +31,7 @@ import androidx.compose.material3.Scaffold
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,6 +64,8 @@ fun NoteListScreen(
 ) {
 
 val journalId = viewModel.listId
+
+    val list = viewModel.notes.collectAsState(initial = emptyList())
 
     val note = Note(
         4, "12.09.2024", "11:34", "99879.110",
@@ -113,8 +116,8 @@ val journalId = viewModel.listId
         contentPadding = PaddingValues(bottom = 110.dp)
     )
     {
-        items(notes) { item ->
-            NoteListCard(item) { event ->
+        items(list.value) { item ->
+            NoteListCard(item, journalId.toString()) { event ->
                 viewModel.onEvent(event)
             }
         }
@@ -134,7 +137,7 @@ val journalId = viewModel.listId
             Button(
 
                 onClick = { viewModel.onEvent(NoteEvent.OnItemClick(
-                    Routes.NEW_NOTE))
+                    Routes.NEW_NOTE+ "/${journalId}" ))
                 },
                 colors = ButtonDefaults.buttonColors(Orange),
             ) {
