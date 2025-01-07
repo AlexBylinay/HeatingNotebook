@@ -1,5 +1,6 @@
 package com.example.heatingnotebook.note_screens
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
@@ -20,6 +21,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,22 +30,24 @@ class NoteViewModel @Inject constructor(
     private val repository: NoteRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel(), DialogController {
+
     private val _uiEvent = Channel<UiEvent>()
-
     val uiEvent = _uiEvent.receiveAsFlow()
-
   //  var noteList: Flow<List<Note>>? = null
-
     val notes = repository.getAllNote()
     //var note: Note? = null
     var shoppingListItem: Journal? = null
     var listId: Int = 1
     var journalId: Int = 1
+  //  var noteId: Int = 1
+
 
     init {
 
         journalId = savedStateHandle.get<String>("journalId")?.toInt()!!
         Log.d("MyLog", "List id View model $journalId")
+
+     //   noteId = savedStateHandle.get<String>("noteId")?.toInt()!!
 
       //  noteList = repository.getAllNoteByJournalId(journalId)
     }
@@ -52,11 +57,11 @@ class NoteViewModel @Inject constructor(
 
     var note = mutableStateOf(
         Note(
-            2, "", "", "",
+            null, "", "", "",
             "", " ", "", "",
             "", "", "",
             "",
-            "", "", "", " ", 30
+            "", "", "", " ", journalId
         )
     )
     var amountHeat1 = mutableStateOf("")
@@ -100,11 +105,11 @@ class NoteViewModel @Inject constructor(
                     if (listId == -1) return@launch
                     repository.insertNote(
                         Note(
-                            4, "12.09.2024", "11:34", "99879.110",
-                            "0.78", "1.7", "56.2", "34:78",
-                            "99879.110", "0.78", "1.7",
-                            "46.2",
-                            "34:78", "10.0", "5.0", " 2:13", journalId
+                            null, getCurrentData(), getCurrentTime(), amountHeat1.value,
+                            amount1.value, instantFlow1.value, temperature1.value, timeWork1.value,
+                            amountHeat2.value, amount2.value, instantFlow2.value,
+                            temperature2.value,
+                            timeWork2.value, tempHot.value, tempHotIm.value, timeWorkWrong.value, journalId
                         )
                     )
                 }
@@ -165,5 +170,16 @@ class NoteViewModel @Inject constructor(
         viewModelScope.launch {
             _uiEvent.send(event)
         }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getCurrentData():String{
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        return sdf.format(Date())
+    }
+    @SuppressLint("SimpleDateFormat")
+    private fun getCurrentTime():String{
+        val sdf = SimpleDateFormat("hh:mm:ss")
+        return sdf.format(Date())
     }
 }

@@ -8,7 +8,7 @@ import com.example.heatingnotebook.data.Note
 import com.example.heatingnotebook.main_screen.MainScreen
 import com.example.heatingnotebook.note_screens.NewNoteScreen
 import com.example.heatingnotebook.note_screens.NoteListScreen
-import com.example.heatingnotebook.note_screens.NoteScreen
+import com.example.heatingnotebook.see_note_screen.NoteScreen
 import com.example.heatingnotebook.utils.Routes
 
 @Composable
@@ -37,7 +37,7 @@ fun MainNavigationGraph () {
         composable(Routes.MAIN_SCREEN) {
             MainScreen(navController)
         }
-        composable(Routes.NOTE+"/{journalId}") {
+        composable(Routes.NOTE+"/{noteId}") {
             NoteScreen()
         }
 

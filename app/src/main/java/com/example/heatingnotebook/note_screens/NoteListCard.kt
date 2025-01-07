@@ -37,7 +37,7 @@ fun NoteListCard(note: Note, journalID: String,
     Card(
         onClick = {
             onEvent(NoteEvent.OnItemClick(
-                Routes.NOTE+ "/${journalID}" ))
+                Routes.NOTE+ "/${note.id}" ))
         },
         modifier = Modifier
             .fillMaxWidth()

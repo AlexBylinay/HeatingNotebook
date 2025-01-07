@@ -64,7 +64,7 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(),
     )
 
 
-    var text by remember { mutableStateOf("") }
+    var textChenged by remember { mutableStateOf("") }
 
 
     val modifierText = Modifier.padding(
@@ -128,9 +128,11 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(),
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.note.value.amountHeat1,
+                value = viewModel.amountHeat1.value,
+                //value = viewModel.note.value.amountHeat1,
                 onValueChange = {
-                    viewModel.note.value.amountHeat1 = it
+                        number -> viewModel.amountHeat1.value = number
+                // viewModel.note.value.amountHeat1 = it
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -145,9 +147,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(),
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.note.value.amount1,
+                value =  viewModel.amount1.value,
                 onValueChange = {
-                    viewModel.note.value.amount1 = it
+                        number -> viewModel.amount1.value = number
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -157,14 +159,14 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(),
                     )
                 },
                 placeholder = { Text(text = placeholderTxt + note.amount1) },
-                keyboardOptions = keyboardNum
+               keyboardOptions = keyboardNum
             )
 
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value =  viewModel.note.value.instantFlow1,
-                onValueChange = {
-                    viewModel.note.value.instantFlow1 = it
+                value =  viewModel.instantFlow1.value,
+                onValueChange = {number->
+                    viewModel.instantFlow1.value = number
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -178,9 +180,9 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(),
             )
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
-                value = viewModel.note.value.temperature1,
-                onValueChange = {
-                    viewModel.note.value.temperature1 = it
+                value = viewModel.temperature1.value,
+                onValueChange = {number->
+                    viewModel.temperature1.value = number
                 },
                 textStyle = outlinedTextFieldTextStyle,
                 label = {
@@ -311,7 +313,7 @@ fun NewNoteScreen(viewModel: NoteViewModel = hiltViewModel(),
             OutlinedTextField(
                 modifier = modifierOutlinedTextField,
                 value = viewModel.note.value.tempHot,
-                onValueChange = {
+                onValueChange = {it ->
                     viewModel.note.value.tempHot= it
                 },
                 textStyle = outlinedTextFieldTextStyle,

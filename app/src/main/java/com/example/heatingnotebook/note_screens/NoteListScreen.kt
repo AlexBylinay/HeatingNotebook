@@ -63,7 +63,7 @@ fun NoteListScreen(
     onNavigate: (String) -> Unit
 ) {
 
-val journalId = viewModel.listId
+    val journalId = viewModel.listId
 
     val list = viewModel.notes.collectAsState(initial = emptyList())
 

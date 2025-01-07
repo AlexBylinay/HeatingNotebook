@@ -1,4 +1,4 @@
-package com.example.heatingnotebook.note_screens
+package com.example.heatingnotebook.see_note_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,22 +8,26 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.heatingnotebook.data.Note
 import com.example.heatingnotebook.ui.theme.OrangeLight
 
 @Composable
-fun NoteScreen(viewModel: NoteViewModel = hiltViewModel()) {
+fun NoteScreen(viewModel: SeeNoteViewModel = hiltViewModel()) {
 
     val modifierText =Modifier.padding(top = 8.dp, start = 5.dp)
     val modifierTextCap =Modifier.padding(end = 10.dp, start = 10.dp)
     val styleText = TextStyle(fontSize = 20.sp)
     val styleTextCap = TextStyle(fontSize = 23.sp)
-val note = viewModel.note.value
+    val coroutineScope = rememberCoroutineScope()
+
+
+val note  = viewModel.note2.value
 
 
     Card(
@@ -41,12 +45,12 @@ val note = viewModel.note.value
         ) {
 
             Text(
-                text = "Дата снятия показаний:  ${note.data} ",
+                text = "Дата снятия показаний:  ${note?.data} ",
                 modifierText,
                 style = styleText
             )
             Text(
-                text = "Время снятия показаний:  ${note.time} ",
+                text = "Время снятия показаний:  ${note?.time} ",
                 modifierText,
                 style = styleText
             )
@@ -64,7 +68,7 @@ val note = viewModel.note.value
                     )
 
                     Text(
-                        text = "Показания прибора учета тепла (Q):   ${note.amountHeat1} ",
+                        text = "Показания прибора учета тепла (Q):   ${note?.amountHeat1} ",
                                 modifierText,
                         style = styleText
                     )
@@ -74,22 +78,22 @@ val note = viewModel.note.value
                         style = styleText
                     )
                     Text(
-                        text = "Объём (V),м3:  ${note.amount1} ",
+                        text = "Объём (V),м3:  ${note?.amount1} ",
                         modifierText,
                         style = styleText
                     )
                     Text(
-                        text = "Мгновенный расход (G), м3/ч: ${note.instantFlow1} ",
+                        text = "Мгновенный расход (G), м3/ч: ${note?.instantFlow1} ",
                         modifierText,
                         style = styleText
                     )
                     Text(
-                        text = "Температура (t),°С: ${note.temperature1} ",
+                        text = "Температура (t),°С: ${note?.temperature1} ",
                         modifierText,
                         style = styleText
                     )
                     Text(
-                        text = "Время работы прибора (Тобщ),час: ${note.timeWork1} ",
+                        text = "Время работы прибора (Тобщ),час: ${note?.timeWork1} ",
                         modifierText,
                         style = styleText
                     )
@@ -109,7 +113,7 @@ val note = viewModel.note.value
                     )
 
                     Text(
-                        text = "Показания прибора учета тепла (Q):   ${note.amountHeat2} ",
+                        text = "Показания прибора учета тепла (Q):   ${note?.amountHeat2} ",
                         modifierText,
                         style = styleText
 
@@ -121,25 +125,25 @@ val note = viewModel.note.value
 
                     )
                     Text(
-                        text = "Объём (V),м3:  ${note.amount2} ",
+                        text = "Объём (V),м3:  ${note?.amount2} ",
                         modifierText,
                         style = styleText
 
                     )
                     Text(
-                        text = "Мгновенный расход (G),м3/ч: ${note.instantFlow2} ",
+                        text = "Мгновенный расход (G),м3/ч: ${note?.instantFlow2} ",
                         modifierText,
                         style = styleText
 
                     )
                     Text(
-                        text = "Температура (t),°С: ${note.temperature2} ",
+                        text = "Температура (t),°С: ${note?.temperature2} ",
                         modifierText,
                         style = styleText
 
                     )
                     Text(
-                        text = "Время работы прибора (Тобщ),час: ${note.timeWork2} ",
+                        text = "Время работы прибора (Тобщ),час: ${note?.timeWork2} ",
                         modifierText,
                         style = styleText
 
@@ -147,25 +151,25 @@ val note = viewModel.note.value
 
             }
             Text(
-                text = "id: ${note.id} ",
+                text = "id: ${note?.id} ",
                 modifierText,
                 style = styleText
 
             )
 
             Text(
-                text = "Температура холодной воды(t),°С: ${note.tempHot}",
+                text = "Температура холодной воды(t),°С: ${note?.tempHot}",
                 modifierText,
                 style = styleText
             )
             Text(
-                text = "Температура холодной воды иммитатор (t),°С: ${note.tempHotIm} ",
+                text = "Температура холодной воды иммитатор (t),°С: ${note?.tempHotIm} ",
                 modifierText,
                 style = styleText
 
             )
             Text(
-                text = "Время работы прибора с ошибкой (Тош.),час: ${note.timeWorkWrong} ",
+                text = "Время работы прибора с ошибкой (Тош.),час: ${note?.timeWorkWrong} ",
                 modifierText,
                 style = styleText
             )
