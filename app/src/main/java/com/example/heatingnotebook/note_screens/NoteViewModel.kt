@@ -42,7 +42,25 @@ class NoteViewModel @Inject constructor(
     var journalId: Int = -2
         private set
   //  var noteId: Int = 1
+
+    var originNoteList by mutableStateOf(listOf<Note>())
+
+    var noteList by mutableStateOf(listOf<Note>())
+
   var journalIdForNewScreen= mutableStateOf(journalId)
+
+    var note2 = mutableStateOf(
+        Note(
+            null, "", "", "0.02",
+            "0.02", "0.02", "0.00", "0.00",
+            "0.00", "0.00", "0.00",
+            "0.00",
+            "0.00", "0.00", "0.00", "0.00", journalId
+        )
+    )
+
+
+
 
     init {
 
@@ -52,22 +70,17 @@ class NoteViewModel @Inject constructor(
      //   noteId = savedStateHandle.get<String>("noteId")?.toInt()!!
 
        notes = repository.getAllNoteByJournalId(journalId)
+
+        viewModelScope.launch { notes?.collect{
+                list ->
+            noteList = list
+            originNoteList = list
+        } }
+
     }
 
     // itemsList = repository.getAllItemsByID(listId)
     //viewModelScope.launch { shoppingListItem = repository.getListItemsByID(listId) }
-
-
-    var note2 = mutableStateOf(
-        Note(
-            null, "", "", "",
-            "", " ", "", "",
-            "", "", "",
-            "",
-            "", "", "", " ", journalId
-        )
-    )
-
 
 
     var amountHeat1 = mutableStateOf("")
@@ -101,6 +114,9 @@ class NoteViewModel @Inject constructor(
     override var showEditTableText = mutableStateOf(false)
 
     override var existedId = mutableStateOf(false)
+
+
+
 
 
 

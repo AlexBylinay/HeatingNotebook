@@ -56,13 +56,15 @@ fun NewNoteScreen( modifier: Modifier = Modifier,
                   onPopBackStack: () -> Unit) {
     val note2 = viewModel.note2.value
 
-    val note = Note(
-        2, "12.09.2024", "11:34", "99879.110",
-        "0.78", "1.7", "56.2", "34:78",
-        "99879.110", "0.78", "1.7",
-        "46.2",
-        "34:78", "10.0", "5.0", " 2:13", 3
-    )
+
+
+        //Note(
+       // 2, "12.09.2024", "11:34", "99879.110",
+      //  "0.78", "1.7", "56.2", "34:78",
+     //   "99879.110", "0.78", "1.7",
+     //   "46.2",
+     //   "34:78", "10.0", "5.0", " 2:13", 3
+   // )
 
 
     val modifierText = Modifier.padding(
@@ -86,6 +88,13 @@ fun NewNoteScreen( modifier: Modifier = Modifier,
     val keyboardNum = KeyboardOptions(keyboardType = KeyboardType.Number)
 
     val placeholderTxt = "Последние паказания: "
+
+
+    if (viewModel.noteList.isNotEmpty()){
+        // noteList.sortedBy{it.id}
+     viewModel.note2.value =  viewModel.noteList.last()}
+
+    val note = viewModel.note2.value
 
     Card(
         modifier = modifier
@@ -301,7 +310,7 @@ fun NewNoteScreen( modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.timeWork2) },
+                placeholder = { Text(text = placeholderTxt +note.timeWork2) },
                 keyboardOptions = keyboardNum
             )
 
