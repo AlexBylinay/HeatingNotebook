@@ -69,8 +69,10 @@ class ListJournalViewModel @Inject constructor(
             is ListJournalEvent.OnShowDeleteDialog -> {
                 journal = event.journal
                 openDialog.value = true
+
                 dialogTitle.value = "Удалить Журнал?"
                 showEditTableText.value = false
+
                 //  showEditTableNameText.value = false
 
             }

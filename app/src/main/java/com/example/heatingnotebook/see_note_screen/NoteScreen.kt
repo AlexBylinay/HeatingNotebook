@@ -18,7 +18,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.heatingnotebook.ui.theme.OrangeLight
 
 @Composable
-fun NoteScreen(viewModel: SeeNoteViewModel = hiltViewModel()) {
+fun NoteScreen(modifier: Modifier = Modifier,
+    viewModel: SeeNoteViewModel = hiltViewModel()) {
 
     val modifierText =Modifier.padding(top = 8.dp, start = 5.dp)
     val modifierTextCap =Modifier.padding(end = 10.dp, start = 10.dp)
@@ -28,36 +29,40 @@ fun NoteScreen(viewModel: SeeNoteViewModel = hiltViewModel()) {
 
 
 val note  = viewModel.note2.value
-
-
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 20.dp,
-                bottom = 100.dp, start = 5.dp, end = 5.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = OrangeLight,)
-
-    ) {
-        Column(
-            modifier = Modifier.fillMaxSize()
+        modifier = modifier
+    )
+    {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 2.dp, end = 2.dp
+                ),
+            colors = CardDefaults.cardColors(
+                containerColor = OrangeLight,
+            )
 
         ) {
+            Column(
+                modifier = Modifier.fillMaxSize()
 
-            Text(
-                text = "Дата снятия показаний:  ${note?.data} ",
-                modifierText,
-                style = styleText
-            )
-            Text(
-                text = "Время снятия показаний:  ${note?.time} ",
-                modifierText,
-                style = styleText
-            )
+            ) {
+
+                Text(
+                    text = "Дата снятия показаний:  ${note?.data} ",
+                    modifierText,
+                    style = styleText
+                )
+                Text(
+                    text = "Время снятия показаний:  ${note?.time} ",
+                    modifierText,
+                    style = styleText
+                )
 
 
                 Column(
-                     modifier = Modifier.padding(top = 12.dp)
+                    modifier = Modifier.padding(top = 12.dp)
                 ) {
 
                     Text(
@@ -69,7 +74,7 @@ val note  = viewModel.note2.value
 
                     Text(
                         text = "Показания прибора учета тепла (Q):   ${note?.amountHeat1} ",
-                                modifierText,
+                        modifierText,
                         style = styleText
                     )
                     Text(
@@ -149,32 +154,32 @@ val note  = viewModel.note2.value
 
                     )
 
+                }
+                Text(
+                    text = "id: ${note?.id} ",
+                    modifierText,
+                    style = styleText
+
+                )
+
+                Text(
+                    text = "Температура холодной воды(t),°С: ${note?.tempHot}",
+                    modifierText,
+                    style = styleText
+                )
+                Text(
+                    text = "Температура холодной воды иммитатор (t),°С: ${note?.tempHotIm} ",
+                    modifierText,
+                    style = styleText
+
+                )
+                Text(
+                    text = "Время работы прибора с ошибкой (Тош.),час: ${note?.timeWorkWrong} ",
+                    modifierText,
+                    style = styleText
+                )
+
             }
-            Text(
-                text = "id: ${note?.id} ",
-                modifierText,
-                style = styleText
-
-            )
-
-            Text(
-                text = "Температура холодной воды(t),°С: ${note?.tempHot}",
-                modifierText,
-                style = styleText
-            )
-            Text(
-                text = "Температура холодной воды иммитатор (t),°С: ${note?.tempHotIm} ",
-                modifierText,
-                style = styleText
-
-            )
-            Text(
-                text = "Время работы прибора с ошибкой (Тош.),час: ${note?.timeWorkWrong} ",
-                modifierText,
-                style = styleText
-            )
-
         }
     }
-
 }

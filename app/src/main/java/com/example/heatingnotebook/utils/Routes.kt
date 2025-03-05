@@ -9,4 +9,6 @@ object Routes {
     const val NEW_JOURNAL ="new_journal"
     const val MAIN_SCREEN ="main_screen"
     const val LIST_NOTES ="list_notes"
+    const val EDIT_NOTE ="edit_note"
+
 }

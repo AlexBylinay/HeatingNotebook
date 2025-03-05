@@ -59,13 +59,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun NoteListScreen(
+    modifier: Modifier = Modifier,
     viewModel: NoteViewModel = hiltViewModel(),
     onNavigate: (String) -> Unit
 ) {
 
-    val journalId = viewModel.listId
+    val journalId = viewModel.journalIdForNewScreen.value
 
-    val list = viewModel.notes.collectAsState(initial = emptyList())
+    val list = viewModel.notes?.collectAsState(initial = emptyList())
 
     val note = Note(
         4, "12.09.2024", "11:34", "99879.110",
@@ -92,7 +93,8 @@ fun NoteListScreen(
     )
 
     val textStyle =
-        TextStyle(fontSize = 22.sp, color = RedBlack)
+        TextStyle(//fontSize = 22.sp,
+            color = RedBlack)
 
     // val lable = "Новая запись"
 
@@ -110,51 +112,62 @@ fun NoteListScreen(
     }
 
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentPadding = PaddingValues(bottom = 110.dp)
+    Scaffold(
+        modifier = modifier
     )
+
     {
-        items(list.value) { item ->
-            NoteListCard(item, journalId.toString()) { event ->
-                viewModel.onEvent(event)
-            }
-        }
-    }
-    Column(
-        Modifier.fillMaxHeight(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        Row(
+        LazyColumn(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 60.dp),
-            horizontalArrangement = Arrangement.Absolute.Center,
-            verticalAlignment = Alignment.Bottom
+                .fillMaxSize(),
+            contentPadding = PaddingValues(top = 2.dp, bottom = 60.dp)
+        )
+        {
+            items(list!!.value) { item ->
+                NoteListCard(viewModel, item, journalId.toString()) { event ->
+                    viewModel.onEvent(event)
+                }
+            }
+        }
+        Column(
+            Modifier.fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(
 
-                onClick = { viewModel.onEvent(NoteEvent.OnItemClick(
-                    Routes.NEW_NOTE+ "/${journalId}" ))
-                },
-                colors = ButtonDefaults.buttonColors(Orange),
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 6.dp),
+                horizontalArrangement = Arrangement.Absolute.Center,
+                verticalAlignment = Alignment.Bottom
             ) {
-                androidx.compose.material.Icon(
-                    painter = painterResource(
-                        id = R.drawable.add_icon
-                    ),
-                    contentDescription = "add",
-                    modifier = Modifier.size(ButtonDefaults.IconSize),
-                    tint = Color.White
-                )
-                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                androidx.compose.material3.Text("Создать Запись")
+                Button(
+
+                    onClick = {
+                        viewModel.onEvent(
+                            NoteEvent.OnItemClick(
+                                Routes.NEW_NOTE + "/${journalId}"
+                            )
+                        )
+                    },
+                    colors = ButtonDefaults.buttonColors(Orange),
+                ) {
+                    androidx.compose.material.Icon(
+                        painter = painterResource(
+                            id = R.drawable.add_icon
+                        ),
+                        contentDescription = "add",
+                        modifier = Modifier.size(ButtonDefaults.IconSize),
+                        tint = Color.White
+                    )
+                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                    androidx.compose.material3.Text("Создать Запись")
+                }
+
             }
 
+
         }
-
-
     }
+    MainDialog(viewModel)
 }

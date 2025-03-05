@@ -1,4 +1,4 @@
-package com.example.heatingnotebook.note_screens
+package com.example.heatingnotebook.see_note_screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,24 +13,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
- import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.FabPosition
-
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,19 +32,17 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.heatingnotebook.R
 import com.example.heatingnotebook.data.Note
-import com.example.heatingnotebook.main_screen.BottomNav
-import com.example.heatingnotebook.main_screen.MainScreenEvent
+import com.example.heatingnotebook.note_screens.NoteEvent
+import com.example.heatingnotebook.note_screens.NoteViewModel
 import com.example.heatingnotebook.ui.theme.Orange
 import com.example.heatingnotebook.ui.theme.OrangeLight
-import java.text.SimpleDateFormat
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewNoteScreen( modifier: Modifier = Modifier,
-    viewModel: NoteViewModel = hiltViewModel(),
-                  onPopBackStack: () -> Unit) {
-    val note2 = viewModel.note2.value
+fun EditNoteScreen (modifier: Modifier = Modifier,
+                    viewModel: SeeNoteViewModel = hiltViewModel(),
+                    onPopBackStack: () -> Unit)
+{
+
 
     val note = Note(
         2, "12.09.2024", "11:34", "99879.110",
@@ -63,6 +51,7 @@ fun NewNoteScreen( modifier: Modifier = Modifier,
         "46.2",
         "34:78", "10.0", "5.0", " 2:13", 3
     )
+
 
 
     val modifierText = Modifier.padding(
@@ -91,6 +80,7 @@ fun NewNoteScreen( modifier: Modifier = Modifier,
         modifier = modifier
     )
     {
+
     Card(
         onClick = { },
         modifier = Modifier
@@ -400,15 +390,13 @@ fun NewNoteScreen( modifier: Modifier = Modifier,
                         tint = Color.White
                     )
                     Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                    Text("Добвить")
+                    Text("Сохранить")
                 }
             }
 
         }
 
-
+    }
     }
 }
-}
-
 

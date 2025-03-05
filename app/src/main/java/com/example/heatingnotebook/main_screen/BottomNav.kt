@@ -20,14 +20,14 @@ import com.example.heatingnotebook.ui.theme.Yellow
 fun BottomNav(navController: NavHostController) {
     val listItems = listOf(
         BottomNavItem.Journals,
-        BottomNavItem.NoteItem,
+        //BottomNavItem.NoteItem,
         BottomNavItem.AboutItem,
         BottomNavItem.SettingItem
     )
 
 
     BottomNavigation(backgroundColor = Orange,
-        modifier = Modifier.padding(bottom = 45.dp)) {
+        modifier = Modifier.padding(bottom = 2.dp)) {
         listItems.forEach { item ->
 
             BottomNavigationItem(

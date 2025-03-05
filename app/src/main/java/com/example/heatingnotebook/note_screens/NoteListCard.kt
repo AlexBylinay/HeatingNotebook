@@ -24,16 +24,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import com.example.heatingnotebook.R
 import com.example.heatingnotebook.data.Note
+import com.example.heatingnotebook.dialog.MainDialog
 import com.example.heatingnotebook.list_journala_screen.ListJournalEvent
 import com.example.heatingnotebook.ui.theme.HardRed
 import com.example.heatingnotebook.ui.theme.OrangeLight
 import com.example.heatingnotebook.utils.Routes
 
 @Composable
-fun NoteListCard(note: Note, journalID: String,
+fun NoteListCard( viewModel: NoteViewModel, note: Note, journalID: String,
                  onEvent: (NoteEvent) -> Unit) {
+
     Card(
         onClick = {
             onEvent(NoteEvent.OnItemClick(
@@ -86,6 +89,16 @@ fun NoteListCard(note: Note, journalID: String,
                     style = TextStyle(fontSize = 22.sp),
                     color = Color.Black
                 )
+                Text(
+                    text = note.journalId.toString(),
+                    modifier = Modifier.padding(
+                        top = 7.dp,
+                        start = 10.dp,
+                        bottom = 7.dp
+                    ),
+                    style = TextStyle(fontSize = 22.sp),
+                    color = Color.Black
+                )
 
 
             }
@@ -98,6 +111,12 @@ fun NoteListCard(note: Note, journalID: String,
 
                 IconButton(
                     onClick = {
+                        viewModel.onEvent(NoteEvent.OnItemClick(
+                            Routes.EDIT_NOTE+ "/${note.id}" ))
+
+                        viewModel.changeNote(note)
+
+
                     },
                 )
                 {
@@ -112,6 +131,7 @@ fun NoteListCard(note: Note, journalID: String,
                 }
                 IconButton(
                     onClick = {
+                        onEvent(NoteEvent.OnShowDeleteDialog(note))
                     },
                 )
                 {
@@ -127,4 +147,5 @@ fun NoteListCard(note: Note, journalID: String,
             }
         }
     }
+
 }

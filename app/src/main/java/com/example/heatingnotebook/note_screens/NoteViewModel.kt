@@ -15,6 +15,7 @@ import com.example.heatingnotebook.data.Note
 import com.example.heatingnotebook.data.NoteRepository
 import com.example.heatingnotebook.dialog.DialogController
 import com.example.heatingnotebook.dialog.DialogEvent
+import com.example.heatingnotebook.utils.Routes
 import com.example.heatingnotebook.utils.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -33,29 +34,31 @@ class NoteViewModel @Inject constructor(
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
-  //  var noteList: Flow<List<Note>>? = null
-    val notes = repository.getAllNote()
-    //var note: Note? = null
+    var notes: Flow<List<Note>>? = null
+    //var notes = repository.getAllNote()
+    var note: Note? = null
     var shoppingListItem: Journal? = null
     var listId: Int = 1
-    var journalId: Int = 1
+    var journalId: Int = -2
+        private set
   //  var noteId: Int = 1
-
+  var journalIdForNewScreen= mutableStateOf(journalId)
 
     init {
 
         journalId = savedStateHandle.get<String>("journalId")?.toInt()!!
         Log.d("MyLog", "List id View model $journalId")
-
+        journalIdForNewScreen.value = journalId
      //   noteId = savedStateHandle.get<String>("noteId")?.toInt()!!
 
-      //  noteList = repository.getAllNoteByJournalId(journalId)
+       notes = repository.getAllNoteByJournalId(journalId)
     }
 
     // itemsList = repository.getAllItemsByID(listId)
     //viewModelScope.launch { shoppingListItem = repository.getListItemsByID(listId) }
 
-    var note = mutableStateOf(
+
+    var note2 = mutableStateOf(
         Note(
             null, "", "", "",
             "", " ", "", "",
@@ -64,6 +67,9 @@ class NoteViewModel @Inject constructor(
             "", "", "", " ", journalId
         )
     )
+
+
+
     var amountHeat1 = mutableStateOf("")
     var amount1 = mutableStateOf("")
     var instantFlow1 = mutableStateOf("")
@@ -81,21 +87,21 @@ class NoteViewModel @Inject constructor(
     val timeWorkWrong = mutableStateOf("")
 
     override var textTitle = mutableStateOf("")
-        private set
+
     override var numberTitle = mutableStateOf("")
-        private set
+
     override var editTableText = mutableStateOf("")
-        private set
+
     override var editNumber = mutableStateOf("")
-        private set
+
     override var dialogTitle = mutableStateOf("")
-        private set
+
     override var openDialog = mutableStateOf(false)
-        private set
+
     override var showEditTableText = mutableStateOf(false)
-        private set
+
     override var existedId = mutableStateOf(false)
-        private set
+
 
 
     fun onEvent(event: NoteEvent) {
@@ -115,11 +121,12 @@ class NoteViewModel @Inject constructor(
                 }
             }
 
-            is NoteEvent.OnShowDEventDialog -> {
+            is NoteEvent.OnShowChangeScreen -> {
 
             }
 
             is NoteEvent.OnTextChange -> {
+
 
 
             }
@@ -128,7 +135,13 @@ class NoteViewModel @Inject constructor(
                 sendUiEvent(UiEvent.Navigate(event.route))
             }
 
-            is NoteEvent.OnShowDeleteDialog -> TODO()
+            is NoteEvent.OnShowDeleteDialog -> {
+                note = event.note
+                openDialog.value = true
+                dialogTitle.value = "Удалить Журнал?"
+                showEditTableText.value = false
+                //  showEditTableNameText.value = false
+            }
 
         }
 
@@ -156,7 +169,7 @@ class NoteViewModel @Inject constructor(
                     //  onEvent(ListJournalEvent.OnItemSave)
                 } else {
                     viewModelScope.launch {
-                        //  journal?.let { repository.deleteJournal(it) }
+                          note?.let { repository.deleteNote(it) }
                     }
                     openDialog.value = false
                 }
@@ -172,14 +185,39 @@ class NoteViewModel @Inject constructor(
         }
     }
 
+    fun changeNote(note: Note){
+         amountHeat1.value = note.amountHeat1
+         amount1.value = note.amount1
+         instantFlow1.value = note.instantFlow1
+         temperature1.value = note.temperature1
+        timeWork1.value = note.timeWork1
+
+         amountHeat2.value = note.amountHeat2
+         amount2.value = note.amount1
+         instantFlow2.value = note.instantFlow2
+         temperature2.value = note.temperature2
+         timeWork2.value = note.timeWork2
+
+         tempHot.value = note.tempHot
+         tempHotIm.value = note.tempHotIm
+         timeWorkWrong.value = note.timeWorkWrong
+    }
+
+    fun change() {
+        amountHeat1.value = "note.amountHeat1"
+        amount1.value = "note.amount1"
+    }
+
     @SuppressLint("SimpleDateFormat")
     private fun getCurrentData():String{
         val sdf = SimpleDateFormat("dd/M/yyyy")
+
+
         return sdf.format(Date())
     }
     @SuppressLint("SimpleDateFormat")
     private fun getCurrentTime():String{
-        val sdf = SimpleDateFormat("hh:mm:ss")
+        val sdf = SimpleDateFormat("HH:mm:ss")
         return sdf.format(Date())
     }
 }

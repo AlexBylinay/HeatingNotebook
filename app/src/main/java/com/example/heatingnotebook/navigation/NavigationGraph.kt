@@ -4,12 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.heatingnotebook.about_screen.AboutScreen
 import com.example.heatingnotebook.data.Journal
 import com.example.heatingnotebook.data.Note
 import com.example.heatingnotebook.list_journala_screen.ListJournalsScreen
 import com.example.heatingnotebook.note_screens.NewNoteScreen
 import com.example.heatingnotebook.note_screens.NoteListScreen
 import com.example.heatingnotebook.see_note_screen.NoteScreen
+import com.example.heatingnotebook.settings_screen.SettingsScreen
 import com.example.heatingnotebook.utils.Routes
 
 @Composable
@@ -56,12 +58,10 @@ fun NavigationGraph(navController: NavHostController, onNavigate:(String) -> Uni
             NewNoteScreen { -> }
             }
         composable(Routes.ABOUT){
-            NoteListScreen(){ route ->
-                onNavigate(route)
-            }
+            AboutScreen()
             }
         composable(Routes.SETTINGS){
-            NoteScreen()
+            SettingsScreen()
             }
     }
 

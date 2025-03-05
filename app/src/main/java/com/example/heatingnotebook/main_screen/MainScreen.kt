@@ -1,6 +1,7 @@
 package com.example.heatingnotebook.main_screen
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 
 import androidx.compose.material3.FabPosition
@@ -31,6 +32,7 @@ import com.example.heatingnotebook.ui.theme.RedBlack
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
+    modifier: Modifier = Modifier,
     mainNavController: NavHostController,
     viewModel: MainScreenViewModel = hiltViewModel()) {
 
@@ -43,6 +45,9 @@ fun MainScreen(
     val lable = "Сoздать новый журнал "
     val navController = rememberNavController()
     Scaffold(
+
+        modifier = modifier,
+
         bottomBar = {
             BottomNav(navController)
         },
@@ -80,4 +85,5 @@ fun MainScreen(
         MainDialog(viewModel)
 
     }
+
 }
