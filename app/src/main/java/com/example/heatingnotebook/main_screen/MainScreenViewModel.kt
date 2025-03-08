@@ -54,17 +54,11 @@ class MainScreenViewModel @Inject constructor( private val repository: JournalRe
                 }
 
             }
-
-
             is MainScreenEvent.OnShowEditDialog -> {
                 openDialog.value = true
 
-                //   showEditTableNameText.value = true
-
             }
         }
-
-
 
     }
 

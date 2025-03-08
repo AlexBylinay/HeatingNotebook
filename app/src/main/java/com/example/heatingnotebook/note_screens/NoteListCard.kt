@@ -89,16 +89,6 @@ fun NoteListCard( viewModel: NoteViewModel, note: Note, journalID: String,
                     style = TextStyle(fontSize = 22.sp),
                     color = Color.Black
                 )
-                Text(
-                    text = note.journalId.toString(),
-                    modifier = Modifier.padding(
-                        top = 7.dp,
-                        start = 10.dp,
-                        bottom = 7.dp
-                    ),
-                    style = TextStyle(fontSize = 22.sp),
-                    color = Color.Black
-                )
 
 
             }
@@ -115,8 +105,6 @@ fun NoteListCard( viewModel: NoteViewModel, note: Note, journalID: String,
                             Routes.EDIT_NOTE+ "/${note.id}" ))
 
                         viewModel.changeNote(note)
-
-
                     },
                 )
                 {

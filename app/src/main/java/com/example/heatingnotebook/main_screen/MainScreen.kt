@@ -64,15 +64,6 @@ fun MainScreen(
                     modifierText,
                     style = textStyle
                 )
-
-
-              //  Icon(
-             //       painter = painterResource(
-             //           id = R.drawable.add_icon
-             //       ),
-           //         contentDescription = "Add", tint = Color.White
-           //     )
-
             }
         },
         floatingActionButtonPosition = FabPosition.Center

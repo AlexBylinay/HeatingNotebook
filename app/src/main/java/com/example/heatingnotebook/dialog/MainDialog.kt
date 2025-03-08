@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.heatingnotebook.ui.theme.Orange
@@ -23,12 +25,12 @@ import com.example.heatingnotebook.ui.theme.Yellow
 
 @Composable
 fun MainDialog(dialogController: DialogController) {
-    if (dialogController.openDialog.value){
+    if (dialogController.openDialog.value) {
         AlertDialog(
             onDismissRequest = {
                 dialogController.onDialogEvent(DialogEvent.OnCancel)
             },
-            title = { null},
+            title = { null },
             text = {
 
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -45,8 +47,7 @@ fun MainDialog(dialogController: DialogController) {
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    if (dialogController.showEditTableText.value)
-                    {
+                    if (dialogController.showEditTableText.value) {
                         TextField(
                             value = dialogController.editTableText.value,
                             onValueChange = { text ->
@@ -68,13 +69,16 @@ fun MainDialog(dialogController: DialogController) {
                         )
 
 
-                    Spacer(modifier = Modifier.height(10.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         TextField(
                             value = dialogController.editNumber.value,
                             onValueChange = { text ->
                                 dialogController.onDialogEvent(DialogEvent.OnTextNumberChange(text))
                             },
+
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+
                             label = { Text(text = dialogController.numberTitle.value) },
                             colors = TextFieldDefaults.textFieldColors(
                                 backgroundColor = Yellow,
@@ -86,11 +90,12 @@ fun MainDialog(dialogController: DialogController) {
                             textStyle = TextStyle(
                                 color = Orange,
                                 fontSize = 16.sp
-                            )
+                            ),
 
                         )
 
-                }}
+                    }
+                }
             },
 
 
@@ -99,14 +104,15 @@ fun MainDialog(dialogController: DialogController) {
                     dialogController.onDialogEvent(DialogEvent.OnConfirm)
                 }) {
 
+
                     if (dialogController.showEditTableText.value)
                         if(dialogController.existedId.value)
 
                             Text(text = "Редактировать")
-                            else
+                        else
                             Text(text = "Создать")
 
-else
+                    else
                         Text(text = "Удалить" )
                 }
 
@@ -120,8 +126,6 @@ else
                 }
 
             }
-
-
         )
     }
 

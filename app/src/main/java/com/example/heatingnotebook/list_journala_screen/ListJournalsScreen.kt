@@ -21,24 +21,26 @@ import com.example.heatingnotebook.utils.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
-fun ListJournalsScreen(viewModel: ListJournalViewModel = hiltViewModel(),
-                       onNavigate: (String) -> Unit) {
+fun ListJournalsScreen(
+    viewModel: ListJournalViewModel = hiltViewModel(),
+    onNavigate: (String) -> Unit
+) {
 
     val list = viewModel.listJournal.collectAsState(initial = emptyList())
 
-    LaunchedEffect(key1 = true )
+    LaunchedEffect(key1 = true)
     {
-        viewModel.uiEvent.collect{uiEvent ->
-            when (uiEvent){
-                is UiEvent.Navigate ->{
+        viewModel.uiEvent.collect { uiEvent ->
+            when (uiEvent) {
+                is UiEvent.Navigate -> {
                     onNavigate(uiEvent.route)
                 }
-                else ->{}
+
+                else -> {}
             }
 
         }
     }
-
 
     LazyColumn(
         modifier = Modifier

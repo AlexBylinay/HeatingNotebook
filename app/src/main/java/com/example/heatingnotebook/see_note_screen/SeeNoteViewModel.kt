@@ -1,21 +1,13 @@
 package com.example.heatingnotebook.see_note_screen
 
 import android.annotation.SuppressLint
-import android.util.Log
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.heatingnotebook.data.Note
 import com.example.heatingnotebook.data.NoteRepository
-import com.example.heatingnotebook.dialog.DialogController
-import com.example.heatingnotebook.note_screens.NoteEvent
-import com.example.heatingnotebook.utils.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.last
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -27,7 +19,7 @@ class SeeNoteViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     var note: Note? = null
-    var noteId: Int = 5
+    var noteId: Int = 1
     var note2 = mutableStateOf(note)
     var journalId = 1
 
@@ -54,7 +46,6 @@ class SeeNoteViewModel @Inject constructor(
 
         if (note2.value != null){ journalId = note2.value!!.journalId
 
-
            amountHeat1.value = note2.value!!.amountHeat1
                   amount1.value = note2.value!!.amount1
             instantFlow1.value = note2.value!!.instantFlow1
@@ -74,15 +65,8 @@ class SeeNoteViewModel @Inject constructor(
         }
     }
 
-      var listId: Int = 1
 
-
-
-
-
-    fun onEvent(event: NoteEvent) {
-        when (event) {
-            is NoteEvent.OnNoteSave -> {
+    fun onSave() {
                 viewModelScope.launch {
                     repository.insertNote(
                         Note(
@@ -90,33 +74,9 @@ class SeeNoteViewModel @Inject constructor(
                             amount1.value, instantFlow1.value, temperature1.value, timeWork1.value,
                             amountHeat2.value, amount2.value, instantFlow2.value,
                             temperature2.value,
-                            timeWork2.value, tempHot.value, tempHotIm.value, timeWorkWrong.value, journalId
-                        )
+                            timeWork2.value, tempHot.value, tempHotIm.value, timeWorkWrong.value, journalId)
                     )
                 }
-            }
-
-            is NoteEvent.OnShowChangeScreen -> {
-
-            }
-
-            is NoteEvent.OnTextChange -> {
-
-
-
-            }
-
-            is NoteEvent.OnItemClick -> {
-
-            }
-
-            is NoteEvent.OnShowDeleteDialog -> {
-
-            }
-
-        }
-
-
     }
     @SuppressLint("SimpleDateFormat")
     private fun getCurrentData():String{

@@ -17,14 +17,11 @@ import javax.inject.Inject
 @HiltViewModel
 class ListJournalViewModel @Inject constructor(
     private val repository: JournalRepository,
-
     ) : ViewModel(), DialogController {
 
     val listJournal = repository.getAllItems()
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
-
-
 
     override var textTitle = mutableStateOf("")
         private set
@@ -42,9 +39,6 @@ class ListJournalViewModel @Inject constructor(
         private set
     override var existedId = mutableStateOf(false)
         private set
-    //  override var showEditTableNameText= mutableStateOf(false)
-    //    private  set
-
     var journal: Journal? = null
 
     fun onEvent(event: ListJournalEvent) {
@@ -73,8 +67,6 @@ class ListJournalViewModel @Inject constructor(
                 dialogTitle.value = "Удалить Журнал?"
                 showEditTableText.value = false
 
-                //  showEditTableNameText.value = false
-
             }
 
             is ListJournalEvent.OnShowEditDialog -> {
@@ -86,8 +78,6 @@ class ListJournalViewModel @Inject constructor(
                 dialogTitle.value = "Редактирование Журнала"
                 showEditTableText.value = true
                 existedId.value = true
-                //   showEditTableNameText.value = true
-
             }
         }
 

@@ -27,8 +27,6 @@ fun NoteScreen(modifier: Modifier = Modifier,
     val modifierTextCap =Modifier.padding(end = 12.dp, start = 12.dp)
     val styleText = TextStyle(fontSize = 21.sp)
     val styleTextCap = TextStyle(fontSize = 25.sp)
-    val coroutineScope = rememberCoroutineScope()
-
 
 val note  = viewModel.note2.value
     Card(

@@ -37,11 +37,9 @@ fun JournalCard(
     journal: Journal,
     onEvent: (ListJournalEvent) -> Unit
 ) {
-    val yu = 3
     Card(
         onClick = { onEvent(ListJournalEvent.OnItemClick(
            Routes.LIST_NOTES + "/${journal.id}"))
-            //Routes.SETTINGS))
             },
         modifier = Modifier
             .fillMaxWidth()
@@ -90,16 +88,6 @@ fun JournalCard(
                     style = TextStyle(fontSize = 21.sp),
                     color = HardRed, fontWeight = FontWeight.Bold
                 )
-                Text(
-                    text = journal.id.toString(),
-                    modifier = Modifier.padding(
-                        top = 7.dp,
-                        start = 10.dp,
-                        bottom = 7.dp
-                    ),
-                    style = TextStyle(fontSize = 21.sp),
-                    color = HardRed, fontWeight = FontWeight.Bold
-                )
 
             }
             Row(
@@ -108,7 +96,6 @@ fun JournalCard(
                 )
             )
             {
-
                 IconButton(
                     onClick = {
                         onEvent(ListJournalEvent.OnShowEditDialog(journal))

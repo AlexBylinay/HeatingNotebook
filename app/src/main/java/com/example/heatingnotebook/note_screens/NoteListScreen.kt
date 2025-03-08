@@ -68,35 +68,6 @@ fun NoteListScreen(
 
     val list = viewModel.notes?.collectAsState(initial = emptyList())
 
-    val note = Note(
-        4, "12.09.2024", "11:34", "99879.110",
-        "0.78", "1.7", "56.2", "34:78",
-        "99879.110", "0.78", "1.7",
-        "46.2",
-        "34:78", "10.0", "5.0", " 2:13", 30
-    )
-
-    val note2 = Note(
-        4, "12.09.2024", "11:34", "99879.110",
-        "0.78", "1.7", "56.2", "34:78",
-        "99879.110", "0.78", "1.7",
-        "46.2",
-        "34:78", "10.0", "5.0", " 2:13", 30
-    )
-
-    val notes = mutableListOf<Note>(note, note2,note, note2, note, note2,
-        note, note2, note, note2, note2,note, note2, note, note2, note, note2,
-        note2,note, note2, note, note2, note, note2, )
-
-    val modifierText = Modifier.padding(
-        start = 10.dp, end = 10.dp
-    )
-
-    val textStyle =
-        TextStyle(//fontSize = 22.sp,
-            color = RedBlack)
-
-    // val lable = "Новая запись"
 
     LaunchedEffect(key1 = true )
     {
@@ -110,7 +81,6 @@ fun NoteListScreen(
 
         }
     }
-
 
     Scaffold(
         modifier = modifier
@@ -165,7 +135,6 @@ fun NoteListScreen(
                 }
 
             }
-
 
         }
     }

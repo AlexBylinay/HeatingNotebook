@@ -54,17 +54,6 @@ import java.text.SimpleDateFormat
 fun NewNoteScreen( modifier: Modifier = Modifier,
     viewModel: NoteViewModel = hiltViewModel(),
                   onPopBackStack: () -> Unit) {
-    val note2 = viewModel.note2.value
-
-
-
-        //Note(
-       // 2, "12.09.2024", "11:34", "99879.110",
-      //  "0.78", "1.7", "56.2", "34:78",
-     //   "99879.110", "0.78", "1.7",
-     //   "46.2",
-     //   "34:78", "10.0", "5.0", " 2:13", 3
-   // )
 
 
     val modifierText = Modifier.padding(

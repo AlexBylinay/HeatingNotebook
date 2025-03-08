@@ -32,8 +32,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.heatingnotebook.R
 import com.example.heatingnotebook.data.Note
-import com.example.heatingnotebook.note_screens.NoteEvent
-import com.example.heatingnotebook.note_screens.NoteViewModel
 import com.example.heatingnotebook.ui.theme.Orange
 import com.example.heatingnotebook.ui.theme.OrangeLight
 
@@ -74,7 +72,6 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
 
     val keyboardNum = KeyboardOptions(keyboardType = KeyboardType.Number)
 
-    val placeholderTxt = "Последние паказания: "
 
     Card(
         modifier = modifier
@@ -133,7 +130,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.amountHeat1) },
+
                 keyboardOptions = keyboardNum
             )
 
@@ -150,7 +147,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.amount1) },
+
                 keyboardOptions = keyboardNum
             )
 
@@ -167,7 +164,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.instantFlow1) },
+
                 keyboardOptions = keyboardNum
             )
             OutlinedTextField(
@@ -183,7 +180,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.temperature1) },
+
                 keyboardOptions = keyboardNum
             )
 
@@ -200,7 +197,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.timeWork1) },
+
                 keyboardOptions = keyboardNum
             )
 
@@ -224,7 +221,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.amountHeat2) },
+
                 keyboardOptions = keyboardNum
             )
 
@@ -241,7 +238,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.amount2) },
+
                 keyboardOptions = keyboardNum
             )
 
@@ -258,7 +255,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.instantFlow2) },
+
                 keyboardOptions = keyboardNum
             )
             OutlinedTextField(
@@ -274,7 +271,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.temperature2) },
+
                 keyboardOptions = keyboardNum
             )
 
@@ -291,7 +288,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.timeWork2) },
+
                 keyboardOptions = keyboardNum
             )
 
@@ -315,7 +312,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.tempHot) },
+
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
 
@@ -332,7 +329,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.tempHotIm) },
+
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
 
@@ -354,7 +351,6 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
                         style = outlinedTextFieldPlaceholderstyle,
                     )
                 },
-                placeholder = { Text(text = placeholderTxt + note.timeWorkWrong) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
 
@@ -376,7 +372,7 @@ fun EditNoteScreen (modifier: Modifier = Modifier,
 
                 Button(
                     onClick = {
-                        viewModel.onEvent(NoteEvent.OnNoteSave)
+                        viewModel.onSave()
                         onPopBackStack()
                     },
                     colors = ButtonDefaults.buttonColors(Orange),

@@ -9,8 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.heatingnotebook.ui.theme.HardRed
 import com.example.heatingnotebook.ui.theme.Orange
 import com.example.heatingnotebook.ui.theme.OrangeLight
 import com.example.heatingnotebook.ui.theme.Yellow
@@ -20,11 +23,9 @@ import com.example.heatingnotebook.ui.theme.Yellow
 fun BottomNav(navController: NavHostController) {
     val listItems = listOf(
         BottomNavItem.Journals,
-        //BottomNavItem.NoteItem,
         BottomNavItem.AboutItem,
         BottomNavItem.SettingItem
     )
-
 
     BottomNavigation(backgroundColor = Orange,
         modifier = Modifier.padding(bottom = 2.dp)) {
@@ -41,8 +42,12 @@ fun BottomNav(navController: NavHostController) {
                     )
                 },
                 label = {
-                    Text(text = "item.title")
-                }, selectedContentColor = OrangeLight,
+                    Text(text = item.title,
+                    style = TextStyle(fontSize = 10.sp),
+                    color = HardRed
+                    )
+                },
+                selectedContentColor = OrangeLight,
                 unselectedContentColor = Yellow, alwaysShowLabel = false
 
             )

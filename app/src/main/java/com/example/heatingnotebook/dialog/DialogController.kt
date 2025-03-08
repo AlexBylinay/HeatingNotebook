@@ -12,7 +12,7 @@ interface DialogController {
     val showEditTableText: MutableState<Boolean>
     val existedId: MutableState<Boolean>
 
-    //val showEditTableNameText: MutableState<Boolean>
+
     fun onDialogEvent(event: DialogEvent)
 
 

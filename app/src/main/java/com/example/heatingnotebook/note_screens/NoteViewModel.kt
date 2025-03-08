@@ -35,15 +35,11 @@ class NoteViewModel @Inject constructor(
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
     var notes: Flow<List<Note>>? = null
-    //var notes = repository.getAllNote()
     var note: Note? = null
-    var shoppingListItem: Journal? = null
     var listId: Int = 1
     var journalId: Int = -2
         private set
-  //  var noteId: Int = 1
 
-    var originNoteList by mutableStateOf(listOf<Note>())
 
     var noteList by mutableStateOf(listOf<Note>())
 
@@ -51,8 +47,8 @@ class NoteViewModel @Inject constructor(
 
     var note2 = mutableStateOf(
         Note(
-            null, "", "", "0.02",
-            "0.02", "0.02", "0.00", "0.00",
+            null, "", "", "0.00",
+            "0.00", "0.00", "0.00", "0.00",
             "0.00", "0.00", "0.00",
             "0.00",
             "0.00", "0.00", "0.00", "0.00", journalId
@@ -60,28 +56,20 @@ class NoteViewModel @Inject constructor(
     )
 
 
-
-
     init {
 
         journalId = savedStateHandle.get<String>("journalId")?.toInt()!!
         Log.d("MyLog", "List id View model $journalId")
         journalIdForNewScreen.value = journalId
-     //   noteId = savedStateHandle.get<String>("noteId")?.toInt()!!
-
        notes = repository.getAllNoteByJournalId(journalId)
 
         viewModelScope.launch { notes?.collect{
                 list ->
             noteList = list
-            originNoteList = list
+
         } }
 
     }
-
-    // itemsList = repository.getAllItemsByID(listId)
-    //viewModelScope.launch { shoppingListItem = repository.getListItemsByID(listId) }
-
 
     var amountHeat1 = mutableStateOf("")
     var amount1 = mutableStateOf("")
@@ -154,7 +142,7 @@ class NoteViewModel @Inject constructor(
             is NoteEvent.OnShowDeleteDialog -> {
                 note = event.note
                 openDialog.value = true
-                dialogTitle.value = "Удалить Журнал?"
+                dialogTitle.value = "Удалить Запись?"
                 showEditTableText.value = false
                 //  showEditTableNameText.value = false
             }
@@ -219,18 +207,12 @@ class NoteViewModel @Inject constructor(
          timeWorkWrong.value = note.timeWorkWrong
     }
 
-    fun change() {
-        amountHeat1.value = "note.amountHeat1"
-        amount1.value = "note.amount1"
-    }
-
     @SuppressLint("SimpleDateFormat")
     private fun getCurrentData():String{
         val sdf = SimpleDateFormat("dd/M/yyyy")
-
-
         return sdf.format(Date())
     }
+
     @SuppressLint("SimpleDateFormat")
     private fun getCurrentTime():String{
         val sdf = SimpleDateFormat("HH:mm:ss")
